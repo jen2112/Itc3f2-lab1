@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class MainModel extends Model
+class SecModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'table_sections';
+    protected $table            = 'table_section';
     protected $primaryKey       = 'ID';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';

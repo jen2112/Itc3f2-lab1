@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\MainModel;
+use App\Models\SecModel;
 class MainController extends BaseController
 {
     public function delete($data)
@@ -59,6 +60,18 @@ class MainController extends BaseController
         else 
         {
             $main->save($data);
+        }
+        $sectionModel = new SecModel();
+        $sectionData = [
+            'Section' => $this->request->getPost('StudSection'),
+        ];
+        $existingSection = $sectionModel->where('Section', $this->request->getPost('StudSection')) ->first();
+
+        if ($existingSection) {
+            $sectionModel->set($sectionData)->where('ID', $existingSection ['ID'])->update();
+        } 
+        else{
+            $sectionModel->save($sectionData);
         }
 
         return redirect()->to('/test');
